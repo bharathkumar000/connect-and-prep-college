@@ -29,10 +29,12 @@ export const mockBackend = {
 
     // Study Materials (Notes)
     studyMaterials: [
-        { id: 1, title: 'Calculus Complete Notes', type: 'PDF', author: 'Prof. Smith', category: 'Teacher Note', verifiedBy: 'HOD' },
-        { id: 2, title: 'Physics Mindmap - Unit 1', type: 'Image', author: 'Rank 1 Student', category: 'Best Student Note', verifiedBy: 'Prof. Jones' },
-        { id: 3, title: 'Chemistry Short Notes', type: 'PDF', author: 'Dr. White', category: 'Teacher Note', verifiedBy: 'Self' },
-        { id: 4, title: 'Data Structures Cheat Sheet', type: 'PDF', author: 'Student Club', category: 'Best Student Note', verifiedBy: 'Prof. Alan' },
+        { id: 1, title: 'Calculus Complete Notes', type: 'PDF', author: 'Prof. Smith', category: 'Teacher Note', verifiedBy: 'HOD', subject: 'Mathematics', module: 1 },
+        { id: 2, title: 'Physics Mindmap - Unit 1', type: 'Image', author: 'Rank 1 Student', category: 'Best Student Note', verifiedBy: 'Prof. Jones', subject: 'Physics', module: 1 },
+        { id: 3, title: 'Chemistry Short Notes', type: 'PDF', author: 'Dr. White', category: 'Teacher Note', verifiedBy: 'Self', subject: 'Chemistry', module: 2 },
+        { id: 4, title: 'Data Structures Cheat Sheet', type: 'PDF', author: 'Student Club', category: 'Best Student Note', verifiedBy: 'Prof. Alan', subject: 'Computer Science', module: 3 },
+        { id: 5, title: 'Integration Basics', type: 'PDF', author: 'Prof. David', category: 'Teacher Note', verifiedBy: 'HOD', subject: 'Mathematics', module: 2 },
+        { id: 6, title: 'Wave Optics Guide', type: 'PDF', author: 'Dr. Ray', category: 'Teacher Note', verifiedBy: 'HOD', subject: 'Physics', module: 3 },
     ],
 
     // Group Study
@@ -43,28 +45,28 @@ export const mockBackend = {
 
     // Study Marathons (New)
     marathons: [
-        { id: 1, topic: 'Calculus Marathon', venue: 'Main Auditorium', duration: '3 Hours', host: 'Prof. David', date: '2024-03-30', status: 'Upcoming', canRegister: true },
-        { id: 2, topic: 'Full Stack Dev Sprint', venue: 'Computer Lab 1', duration: '5 Hours', host: 'Coding Club', date: '2024-03-25', status: 'Completed', testAvailable: true, userScore: 85 },
+        { id: 1, topic: 'Calculus Marathon', venue: 'Main Auditorium', duration: '3 Hours', host: 'Prof. David', date: '30/03/2024', status: 'Upcoming', canRegister: true },
+        { id: 2, topic: 'Full Stack Dev Sprint', venue: 'Computer Lab 1', duration: '5 Hours', host: 'Coding Club', date: '25/03/2024', status: 'Completed', testAvailable: true, userScore: 85 },
     ],
 
 
     // Peer to Peer Tutoring Schedule
     p2pSchedule: [
-        { id: 1, tutor: 'Sarah (Sem 5)', topic: 'Thermodynamics Basics', time: '2024-03-25 14:00', venue: 'Room 303', studentsRegistered: 5 },
-        { id: 2, tutor: 'Mike (Sem 7)', topic: 'React JS Fundamentals', time: '2024-03-26 16:00', venue: 'Lab 2', studentsRegistered: 12 },
+        { id: 1, tutor: 'Sarah (Sem 5)', topic: 'Thermodynamics Basics', time: '25/03/2024 02:00 PM', venue: 'Room 303', studentsRegistered: 5 },
+        { id: 2, tutor: 'Mike (Sem 7)', topic: 'React JS Fundamentals', time: '26/03/2024 04:00 PM', venue: 'Lab 2', studentsRegistered: 12 },
     ],
 
     attendance: {
         present: 88,
         total: 120,
         history: [
-            { date: '2024-03-22', status: 'Present' },
-            { date: '2024-03-21', status: 'Present' },
-            { date: '2024-03-20', status: 'Absent' },
+            { date: '22/03/2024', status: 'Present' },
+            { date: '21/03/2024', status: 'Present' },
+            { date: '20/03/2024', status: 'Absent' },
         ],
         // New Data for Redesign
-        curriculums: ['2021 SCHEME', '2022 SCHEME'],
-        terms: ['1', '2', '3', '4', '5', '6', '7', '8'],
+        curriculums: ['2025 SCHEME', '2026 SCHEME'],
+        terms: ['1', '2', '3', '4'],
         courseSummary: [
             { course: '1BEECT103 - Elements of Electronics Engineering', present: 42, total: 50, percentage: 84 },
             { course: '1BIMEK105 - Introduction to Mechanical Engineering', present: 45, total: 50, percentage: 90 },
@@ -87,7 +89,7 @@ export const mockBackend = {
     },
 
     libraryBooks: [
-        { id: 101, title: 'Introduction to Algorithms', dueDate: '2024-04-10', status: 'Borrowed' },
+        { id: 101, title: 'Introduction to Algorithms', dueDate: '10/04/2024', status: 'Borrowed' },
         { id: 102, title: 'Clean Code: A Handbook', status: 'Available' },
         { id: 103, title: 'Artificial Intelligence', status: 'Available' },
     ],
@@ -222,9 +224,9 @@ export const mockBackend = {
             },
         ],
         exams: [
-            { date: '2026-03-15', subject: 'Mathematics', type: 'Internal 2' },
-            { date: '2026-03-18', subject: 'Physics', type: 'Internal 2' },
-            { date: '2026-04-20', subject: 'All Subjects', type: 'Semester End Exam' },
+            { date: '15/03/2026', subject: 'Mathematics', type: 'Internal 2' },
+            { date: '18/03/2026', subject: 'Physics', type: 'Internal 2' },
+            { date: '20/04/2026', subject: 'All Subjects', type: 'Semester End Exam' },
         ]
     },
 
@@ -329,9 +331,9 @@ export const mockBackend = {
     ],
     // School & Parent Features Data
     homework: [
-        { id: 1, subject: 'Mathematics', title: 'Quadratic Equations Ex 4.2', dueDate: '2024-03-28', status: 'Pending', priority: 'High' },
-        { id: 2, subject: 'Science', title: 'Plant Cell Diagram', dueDate: '2024-03-29', status: 'Completed', priority: 'Medium' },
-        { id: 3, subject: 'History', title: 'French Revolution Essay', dueDate: '2024-04-01', status: 'Pending', priority: 'Low' },
+        { id: 1, subject: 'Mathematics', title: 'Quadratic Equations Ex 4.2', dueDate: '28/03/2024', status: 'Pending', priority: 'High' },
+        { id: 2, subject: 'Science', title: 'Plant Cell Diagram', dueDate: '29/03/2024', status: 'Completed', priority: 'Medium' },
+        { id: 3, subject: 'History', title: 'French Revolution Essay', dueDate: '01/04/2024', status: 'Pending', priority: 'Low' },
     ],
 
     parentData: {
@@ -339,18 +341,18 @@ export const mockBackend = {
             attendance: 92,
             homeworkCompletion: 85,
             recentGrades: [
-                { subject: 'Math', grade: 'A', date: '2024-03-20' },
-                { subject: 'Science', grade: 'B+', date: '2024-03-18' },
-                { subject: 'English', grade: 'A+', date: '2024-03-15' },
+                { subject: 'Math', grade: 'A', date: '20/03/2024' },
+                { subject: 'Science', grade: 'B+', date: '18/03/2024' },
+                { subject: 'English', grade: 'A+', date: '15/03/2024' },
             ],
             behavior: 'Excellent',
             teacherRemarks: 'Participates actively in class. Needs slight improvement in handwriting.'
         },
         fees: [
-            { id: 1, title: 'Term 2 Tuition Fee', amount: '₹15,000', dueDate: '2024-04-10', status: 'Unpaid', penalty: '₹0' },
-            { id: 2, title: 'Transport Fee - March', amount: '₹2,500', dueDate: '2024-03-31', status: 'Paid', receipt: 'REC-9982' },
-            { id: 3, title: 'Library Membership Renewal', amount: '₹500', dueDate: '2024-04-15', status: 'Unpaid' },
-            { id: 4, title: 'Lab Materials Fee', amount: '₹1,200', dueDate: '2024-03-15', status: 'Paid', receipt: 'REC-9910' },
+            { id: 1, title: 'Term 2 Tuition Fee', amount: '₹15,000', dueDate: '10/04/2024', status: 'Unpaid', penalty: '₹0' },
+            { id: 2, title: 'Transport Fee - March', amount: '₹2,500', dueDate: '31/03/2024', status: 'Paid', receipt: 'REC-9982' },
+            { id: 3, title: 'Library Membership Renewal', amount: '₹500', dueDate: '15/04/2024', status: 'Unpaid' },
+            { id: 4, title: 'Lab Materials Fee', amount: '₹1,200', dueDate: '15/03/2024', status: 'Paid', receipt: 'REC-9910' },
         ],
         safetyMonitor: {
             overallStatus: 'Secure',
@@ -364,8 +366,8 @@ export const mockBackend = {
             socialScore: 98,
         },
         notices: [
-            { id: 1, title: 'Annual Day Rehearsal', date: '2024-03-24', message: 'Students participating in the dance must stay back until 4PM.' },
-            { id: 2, title: 'PTM Meeting', date: '2024-04-05', message: 'Parent Teacher Meeting scheduled for Friday at 3:00 PM.' },
+            { id: 1, title: 'Annual Day Rehearsal', date: '24/03/2024', message: 'Students participating in the dance must stay back until 4PM.' },
+            { id: 2, title: 'PTM Meeting', date: '05/04/2024', message: 'Parent Teacher Meeting scheduled for Friday at 3:00 PM.' },
         ]
     },
 
@@ -375,10 +377,10 @@ export const mockBackend = {
         { sem: 2, sgpa: 8.8, attendance: 88, studyHours: 145, weakSubjects: ['Thermodynamics'], strongSubjects: ['AI & Apps', 'Mathematics'] },
     ],
 
-    login: async (email, password, type) => {
+    login: async (email, password) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const user = mockBackend.users.find(u => u.email === email && u.password === password && u.role === type);
+                const user = mockBackend.users.find(u => u.email === email && u.password === password);
                 if (user) {
                     resolve({ user, token: 'mock-jwt-token' });
                 } else {
