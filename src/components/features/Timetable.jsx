@@ -59,7 +59,7 @@ const Timetable = () => {
     };
 
     return (
-        <div className="timetable-container animate-enter" style={{ padding: '2rem' }}>
+        <div className="timetable-container animate-enter" style={{ padding: '2rem 1rem', maxWidth: '100%' }}>
             {/* Tab Launcher Bar */}
             <div className="tt-tab-bar" style={{
                 display: 'flex',
@@ -106,7 +106,7 @@ const Timetable = () => {
                     fontWeight: '600'
                 }}>
                     <Clock size={16} color="var(--accent-primary)" />
-                    <span>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    <span>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</span>
                 </div>
             </div>
 
@@ -210,15 +210,102 @@ const Timetable = () => {
                         </table>
                     </div>
 
-                    {/* Legend */}
-                    <div className="tt-legend">
-                        {Object.entries(subjectColors).map(([subject, color]) => (
-                            <div key={subject} className="tt-legend-item">
-                                <span className="tt-legend-dot" style={{ background: color }}></span>
-                                <span>{subject}</span>
-                            </div>
-                        ))}
-                    </div>
+                    <style>{`
+                        .timetable-container {
+                            width: 100%;
+                            padding: 0.5rem 0 !important;
+                            max-width: none !important;
+                        }
+                        .tt-table-wrapper {
+                            margin: 0;
+                            width: 100%;
+                            background: #000;
+                            border: 2px solid #fff;
+                            box-shadow: 10px 10px 0px rgba(255, 255, 255, 0.1);
+                        }
+                        .tt-excel-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                        }
+                        .tt-corner-header, .tt-period-header, .tt-day-cell {
+                            background: #111 !important;
+                            color: #fff !important;
+                            border: 1px solid #333 !important;
+                            padding: 6px 2px !important;
+                            font-size: 0.75rem;
+                        }
+                        .tt-period-header {
+                            background: #fbbf24 !important;
+                            color: #000 !important;
+                            font-weight: 900 !important;
+                            font-size: 0.9rem;
+                        }
+                        .tt-cell {
+                            height: 48px; /* Ultra-compact for single page */
+                            border: 1px solid #333 !important;
+                        }
+                        .tt-subject-cell {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            padding: 1px;
+                            font-weight: 800;
+                        }
+                        .tt-subject-name {
+                            font-size: 0.7rem;
+                            letter-spacing: -0.2px;
+                            line-height: 1;
+                        }
+                        .tt-subject-type {
+                            font-size: 0.5rem;
+                            opacity: 0.8;
+                            text-transform: uppercase;
+                        }
+                        .tt-separator-cell {
+                            background: #000 !important;
+                            color: #fbbf24 !important;
+                            font-weight: 900 !important;
+                            width: 20px;
+                            border: 1px solid #333 !important;
+                            font-size: 0.65rem;
+                        }
+                        .tt-legend {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 4px 12px;
+                            margin-top: 1rem;
+                            padding: 0.5rem;
+                            background: #111;
+                            border: 1px solid #333;
+                        }
+                        .tt-legend-item {
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+                            font-size: 0.6rem;
+                            font-weight: 700;
+                            color: #888;
+                            text-transform: uppercase;
+                        }
+                        .tt-legend-dot {
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 1px;
+                        }
+                        .exams-section {
+                            margin-top: 1.5rem !important;
+                        }
+                        .exams-grid {
+                            gap: 1rem !important;
+                        }
+                        .exam-card {
+                            padding: 10px !important;
+                        }
+                    `}</style>
 
                     {/* Upcoming Exams */}
                     <div className="exams-section" style={{ marginTop: '3rem' }}>
