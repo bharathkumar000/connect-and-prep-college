@@ -24,7 +24,7 @@ import Challenges from './components/features/Challenges'
 import AnonymousChat from './components/features/AnonymousChat'
 import ComplaintBox from './components/features/ComplaintBox'
 import PersonalNotes from './components/features/PersonalNotes'
-import HomeworkHub from './components/features/HomeworkHub'
+import AssignmentHub from './components/features/AssignmentHub'
 import ParentDashboard from './components/features/ParentDashboard'
 import TeachersDiary from './components/features/TeachersDiary'
 import FinancePortal from './components/features/FinancePortal'
@@ -77,7 +77,7 @@ function App() {
                         <Route path="my-notes" element={<PersonalNotes />} />
                         <Route path="anonymous-chat" element={<AnonymousChat />} />
                         <Route path="complaints" element={<ComplaintBox />} />
-                        <Route path="homework" element={<HomeworkHub />} />
+                        <Route path="assignments" element={<AssignmentHub />} />
                         <Route path="parent-dashboard" element={<ParentDashboard />} />
                         <Route path="teachers-diary" element={<TeachersDiary />} />
                         <Route path="finance" element={<FinancePortal />} />
