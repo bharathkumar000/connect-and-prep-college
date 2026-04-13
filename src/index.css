@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Dark Neo-Brutalist Palette */
+  --bg-primary: #050505;
+  /* Pitch Black */
+  --bg-secondary: #2C2C2C;
+  /* Dark Gray */
+
+  --border-color: #ffffff;
+  /* Stark White Borders */
+  --border-width: 2px;
+
+  /* Hard White Shadows for High Contrast */
+  --shadow-hard: 4px 4px 0px #ffffff;
+  --shadow-hover: 6px 6px 0px #ffffff;
+
+  /* Vibrant Neon Accents */
+  --accent-primary: #a78bfa;
+  /* Light Violet */
+  --accent-secondary: #f472b6;
+  /* Pink */
+  --accent-action: #fbbf24;
+  /* Amber */
+  --success: #4ade80;
+  /* Neon Green */
+  --error: #f87171;
+  /* Pastel Red */
+
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-inverse: #000000;
+
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text-primary);
+  /* Default app background matches primary */
+  --bg-app-background: var(--bg-primary);
+  /* Default card background matches secondary */
+  --bg-card: var(--bg-secondary);
+  background-color: var(--bg-app-background);
+  font-size: 100%;
+  /* Prevent iOS text size adjustment */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #F5F5F5;
+
+  /* Card background becomes grey */
+  --bg-card: #D1D5DB;
+
+  /* Whitesmoke Background */
+  --bg-app-background: #F5F5F5;
+
+  /* Ocean Blue Borders and Shadows replaced with Black */
+  --border-color: #000000;
+  --shadow-hard: 4px 4px 0px #000000;
+  --shadow-hover: 6px 6px 0px #000000;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-inverse: #ffffff;
+
+  /* Black Accent */
+  --accent-primary: #000000;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Dot Matrix Pattern */
+  background: var(--bg-app-background);
+  background-size: 24px 24px;
+  color: var(--text-primary);
+  /* Better mobile touch handling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal scroll on mobile */
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Scrollbar */
+/* Global Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Utility Classes for Animations */
+.animate-enter {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  /* Starte hidden */
+}
+
+.animate-scale {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Stagger Delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Refined Button Interactions */
+button:active {
+  transform: translate(2px, 2px);
+  /* Reduce shadow on press for tactile feel */
+  box-shadow: 2px 2px 0px var(--shadow-hard) !important;
+}
+
+/* Smooth Transitions */
+a,
+button,
+.card,
+.stat-card,
+.short-card,
+input {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Scrollbar Polish */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-primary);
+  border-left: 2px solid var(--border-color);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-primary);
+  border: 2px solid var(--bg-primary);
+  border-radius: 0;
+  /* Square thumb for brutalist look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ==================== MOBILE BASE STYLES ==================== */
+@media (max-width: 768px) {
+  /* Hide scrollbar on mobile WebKit */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  /* Touch-friendly button active states */
+  button:active {
+    transform: scale(0.97);
+    box-shadow: none !important;
+  }
+
+  /* Smooth scrolling everywhere */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent content from going offscreen */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 95%;
+  }
+}
