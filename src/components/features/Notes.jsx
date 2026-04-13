@@ -1,103 +1,207 @@
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
-import { FileText, Download, User, Star, Clock, BookOpen, AlertCircle } from 'lucide-react';
+import { FileText, Download, Folder, ChevronRight, Home, ArrowLeft, Star, FileQuestion } from 'lucide-react';
 import './FeatureStyles.css';
 
 const Notes = () => {
-    const [activeTab, setActiveTab] = useState('notes'); // 'notes' or 'pyqs'
+    const [selectedSubject, setSelectedSubject] = useState(null);
+    const [selectedModule, setSelectedModule] = useState(null);
+    const [viewType, setViewType] = useState('folders'); // 'folders', 'modules', 'notes', or 'pyqs'
+
     const { studyMaterials, pyqs } = mockBackend;
 
-    const teacherNotes = studyMaterials.filter(n => n.category === 'Teacher Note');
-    const studentNotes = studyMaterials.filter(n => n.category === 'Best Student Note');
+    // Derived Data
+    const subjects = [...new Set([...studyMaterials.map(m => m.subject), ...pyqs.map(q => q.subject)])];
+    const modules = [1, 2, 3, 4, 5];
 
-    return (
-        <div className="feature-container">
-            {activeTab === 'notes' ? (
-                <div className="feature-content">
-                    <h3 style={{ borderBottom: '1px solid #444', paddingBottom: '0.5rem', marginBottom: '1rem', color: '#000000ff' }}>
-                        <BookOpen size={20} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }} />
-                        Teacher's Curated Notes
-                    </h3>
-                    <div className="papers-grid" style={{ marginBottom: '3rem' }}>
-                        {teacherNotes.map((item) => (
-                            <div key={item.id} className="paper-card">
-                                <div className="paper-icon"><FileText size={32} color="#363bc7ff" /></div>
-                                <div className="paper-info">
-                                    <h3>{item.title}</h3>
-                                    <div className="meta">By {item.author}</div>
-                                </div>
-                                <button className="download-btn"><Download size={16} /> Download</button>
-                            </div>
-                        ))}
-                    </div>
+    const filteredNotes = studyMaterials.filter(n => 
+        n.subject === selectedSubject && n.module === selectedModule
+    );
 
-                    <h3 style={{ borderBottom: '1px solid #3f3f3fff', paddingBottom: '0.5rem', marginBottom: '1rem', color: '#000000ff' }}>
-                        <Star size={20} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }} />
-                        Best Student Short Notes & Mindmaps
-                    </h3>
-                    <div className="papers-grid">
-                        {studentNotes.map((item) => (
-                            <div key={item.id} className="paper-card" style={{ borderColor: 'rgba(245, 158, 11, 0.3)' }}>
-                                <div className="paper-icon"><FileText size={32} color="#f59e0b" /></div>
-                                <div className="paper-info">
-                                    <h3>{item.title}</h3>
-                                    <div className="meta">
-                                        By {item.author}
-                                        <span style={{ display: 'block', fontSize: '0.75rem', color: '#4ade80', marginTop: '4px' }}>
-                                            Verified by {item.verifiedBy}
-                                        </span>
-                                    </div>
-                                </div>
-                                <button className="download-btn"><Download size={16} /> Download</button>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div className="pyq-list">
-                    {pyqs.map((q, idx) => (
-                        <div key={q.id} className="card" style={{
-                            padding: '1.5rem',
-                            marginBottom: '1rem',
-                            display: 'flex',
-                            gap: '1rem',
-                            alignItems: 'start'
-                        }}>
-                            <div style={{ flex: 1 }}>
-                                <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>{q.question}</h3>
-                                <span style={{
-                                    background: '#333',
-                                    padding: '2px 8px',
-                                    borderRadius: '4px',
-                                    fontSize: '0.8rem',
-                                    color: '#ccc'
-                                }}>
-                                    {q.subject}
-                                </span>
-                            </div>
-                            <div style={{ textAlign: 'right' }}>
-                                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', justifyContent: 'flex-end', maxWidth: '150px' }}>
-                                    {q.yearsAsked.map(year => (
-                                        <span key={year} style={{
-                                            background: 'rgba(248, 113, 113, 0.2)',
-                                            color: '#f87171',
-                                            padding: '2px 6px',
-                                            borderRadius: '4px',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 'bold'
-                                        }}>
-                                            {year}
-                                        </span>
-                                    ))}
-                                </div>
-                                <small style={{ color: '#666', marginTop: '4px', display: 'block' }}>Years Asked</small>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+    const filteredPYQs = pyqs.filter(q => q.subject === selectedSubject);
+
+    const handleBack = () => {
+        if (viewType === 'notes') setViewType('modules');
+        else if (viewType === 'pyqs' || viewType === 'modules') {
+            setViewType('folders');
+            setSelectedSubject(null);
+        }
+    };
+
+    const handleSubjectSelect = (subject) => {
+        setSelectedSubject(subject);
+        setViewType('modules');
+    };
+
+    const renderBreadcrumbs = () => (
+        <div className="folder-breadcrumbs">
+            <button onClick={() => { setSelectedSubject(null); setViewType('folders'); }} className="breadcrumb-btn">
+                <Home size={16} /> All Subjects
+            </button>
+            {selectedSubject && (
+                <>
+                    <ChevronRight size={16} className="divider" />
+                    <button onClick={() => setViewType('modules')} className={`breadcrumb-btn ${viewType === 'modules' ? 'active' : ''}`}>
+                        {selectedSubject}
+                    </button>
+                </>
+            )}
+            {viewType === 'notes' && (
+                <>
+                    <ChevronRight size={16} className="divider" />
+                    <button className="breadcrumb-btn active">
+                        Module {selectedModule}
+                    </button>
+                </>
+            )}
+            {viewType === 'pyqs' && (
+                <>
+                    <ChevronRight size={16} className="divider" />
+                    <button className="breadcrumb-btn active">
+                        PYQS
+                    </button>
+                </>
             )}
         </div>
     );
+
+    const renderContent = () => {
+        if (viewType === 'folders') {
+            return (
+                <div className="folder-grid">
+                    {subjects.map(subject => (
+                        <div key={subject} className="folder-card" onClick={() => handleSubjectSelect(subject)}>
+                            <div className="folder-icon-wrapper">
+                                <Folder size={64} className="folder-icon" fill="rgba(167, 139, 250, 0.2)" />
+                            </div>
+                            <span className="folder-name">{subject}</span>
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+
+        if (viewType === 'modules') {
+            return (
+                <div className="folder-structure-view">
+                    <div className="folder-grid">
+                        {/* Special folder for PYQS of this subject */}
+                        <div className="folder-card pyq-folder" onClick={() => setViewType('pyqs')}>
+                            <div className="folder-icon-wrapper">
+                                <Folder size={64} className="folder-icon" fill="rgba(248, 113, 113, 0.2)" />
+                            </div>
+                            <span className="folder-name">PYQS Collection</span>
+                        </div>
+
+                        {/* Module folders */}
+                        {modules.map(mod => (
+                            <div key={mod} className="folder-card module-folder" onClick={() => { setSelectedModule(mod); setViewType('notes'); }}>
+                                <div className="folder-icon-wrapper">
+                                    <Folder size={64} className="folder-icon" fill="rgba(251, 191, 36, 0.2)" />
+                                </div>
+                                <span className="folder-name">Module {mod}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        if (viewType === 'pyqs') {
+            return (
+                <div className="pyqs-list-view">
+                    <div className="section-header">
+                        <h3>Previous Year Questions - {selectedSubject}</h3>
+                    </div>
+                    <div className="pyq-grid">
+                        {filteredPYQs.length > 0 ? (
+                            filteredPYQs.map(q => (
+                                <div key={q.id} className="pyq-card-v2">
+                                    <div className="pyq-header">
+                                        <div className="pyq-years">
+                                            {q.yearsAsked.map(y => <span key={y} className="year-pill">{y}</span>)}
+                                        </div>
+                                    </div>
+                                    <h3 className="pyq-question">{q.question}</h3>
+                                    <button className="view-solution-btn">VIEW SOLUTION</button>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="empty-folder-state">
+                                <FileQuestion size={48} />
+                                <p>No PYQs available for this subject yet.</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // notes view
+        return (
+            <div className="notes-list-view">
+                <div className="section-header">
+                    <h3>Files in {selectedSubject} - Module {selectedModule}</h3>
+                </div>
+                <div className="papers-grid">
+                    {filteredNotes.length > 0 ? (
+                        filteredNotes.map(item => (
+                            <div key={item.id} className="paper-card note-file-card">
+                                <div className="paper-icon">
+                                    <FileText size={32} color={item.category === 'Teacher Note' ? '#a78bfa' : '#fbbf24'} />
+                                </div>
+                                <div className="paper-info">
+                                    <h3>{item.title}</h3>
+                                    <div className="meta">
+                                        <span>BY {item.author.toUpperCase()}</span>
+                                        {item.category === 'Best Student Note' && (
+                                            <span className="verified-tag">VERIFIED BY {item.verifiedBy.toUpperCase()}</span>
+                                        )}
+                                    </div>
+                                </div>
+                                <button className="download-btn">
+                                    <Download size={16} /> DOWNLOAD
+                                </button>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="empty-folder-state">
+                            <FileQuestion size={48} />
+                            <p>No notes uploaded for this module yet.</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="notes-page-container">
+            <div className="notes-header">
+                <div className="notes-title-section">
+                    <div className="yellow-title-box">
+                        <h1>NOTES & PYQS</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div className="notes-view-content">
+                <div className="notes-folder-view">
+                    <div className="folder-nav-bar">
+                        {viewType !== 'folders' && (
+                            <button className="back-nav-btn" onClick={handleBack}>
+                                <ArrowLeft size={18} /> BACK
+                            </button>
+                        )}
+                        {renderBreadcrumbs()}
+                    </div>
+                    {renderContent()}
+                </div>
+            </div>
+        </div>
+    );
 };
+
+
 
 export default Notes;
