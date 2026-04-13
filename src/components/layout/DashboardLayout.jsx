@@ -28,11 +28,10 @@ const DashboardLayout = () => {
 
     const studentNav = [
         { label: 'Dashboard', icon: <Layout size={20} />, path: '/dashboard' },
-        { label: 'Homework Hub', icon: <BookOpenCheck size={20} />, path: '/dashboard/homework' },
+        { label: 'Assignment Hub', icon: <BookOpenCheck size={20} />, path: '/dashboard/assignments' },
         { label: 'Attendance List', icon: <Calendar size={20} />, path: '/dashboard/attendance' },
         { label: 'Timetable', icon: <Clock size={20} />, path: '/dashboard/timetable' },
         { label: 'Notes & PYQs', icon: <BookOpen size={20} />, path: '/dashboard/notes' },
-        { label: 'My Notes & Tasks', icon: <StickyNote size={20} />, path: '/dashboard/my-notes' },
         
         { type: 'divider' },
 
