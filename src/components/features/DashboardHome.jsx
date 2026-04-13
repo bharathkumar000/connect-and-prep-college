@@ -37,7 +37,7 @@ const DashboardHome = () => {
                 </div>
                 <div className="date-badge">
                     <Calendar size={16} />
-                    <span>{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+                    <span>{new Date().toLocaleDateString('en-GB')}</span>
                 </div>
             </div>
 
