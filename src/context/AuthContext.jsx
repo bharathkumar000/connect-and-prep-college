@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
         checkAuth();
     }, []);
 
-    const login = async (email, password, type) => {
+    const login = async (email, password) => {
         // Simplified Login for Demo/Testing
-        if (email === '1' && password === '1' && type === 'student') {
+        if (email === '1' && password === '1') {
             const mockStudent = {
                 _id: 'mock-student-id',
                 name: 'Demo Student',
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
             return { success: true };
         }
 
-        if (email === '2' && password === '2' && type === 'teacher') {
+        if (email === '2' && password === '2') {
             const mockTeacher = {
                 _id: 'mock-teacher-id',
                 name: 'Demo Teacher',
@@ -65,9 +65,23 @@ export const AuthProvider = ({ children }) => {
             return { success: true };
         }
 
+        if (email === '3' && password === '3') {
+            const mockParent = {
+                _id: 'mock-parent-id',
+                name: 'Demo Parent',
+                email: 'parent@test.com',
+                role: 'parent'
+            };
+            setUser(mockParent);
+            localStorage.setItem('cp_user', JSON.stringify(mockParent));
+            localStorage.setItem('cp_token', 'mock-token-parent');
+            return { success: true };
+        }
+
+
         try {
-            // Try Real API first
-            const data = await authAPI.login(email, password, type);
+            // Try Real API first (we pass role as undefined or let backend handle it)
+            const data = await authAPI.login(email, password);
             const userData = {
                 _id: data._id,
                 name: data.name,
@@ -83,7 +97,7 @@ export const AuthProvider = ({ children }) => {
             // Fallback to Mock Backend for Demo
             console.warn("API Login failed, using Mock Backend fallback", error.message);
             try {
-                const mockResult = await mockBackend.login(email, password, type);
+                const mockResult = await mockBackend.login(email, password);
                 const userData = {
                     _id: mockResult.user.id,
                     name: mockResult.user.name,
