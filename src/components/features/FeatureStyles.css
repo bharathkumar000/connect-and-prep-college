@@ -2971,7 +2971,7 @@ textarea:focus {
     justify-content: space-between;
     align-items: center;
 }
-/* --- HOMEWORK HUB --- */
+/* --- ASSIGNMENT HUB --- */
 .homework-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -4330,7 +4330,7 @@ button,
         align-items: flex-start;
     }
 
-    /* Homework Hub */
+    /* Assignment Hub */
     .homework-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -4820,4 +4820,303 @@ button,
         padding: 0.4rem 0.5rem;
         font-size: 0.75rem;
     }
+}
+
+/* --- ASSIGNMENT HUB LAYOUT --- */
+.feature-container {
+    padding: 2.5rem;
+}
+
+.feature-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+    gap: 3rem;
+}
+
+.header-text h3 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-text p {
+    color: #888;
+    font-size: 1.2rem;
+    max-width: 500px;
+}
+
+.header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 4px;
+}
+
+.pill {
+    padding: 12px 28px;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase !important;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.1);
+}
+
+.pill:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.2);
+}
+
+.pill.active {
+    background: #a78bfa;
+    color: #000;
+    border-color: #000;
+    box-shadow: 4px 4px 0px #fff;
+}
+
+.add-task-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase !important;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px #fff;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- NOTES & PYQS FOLDER UI --- */
+.notes-page-container {
+    padding: 2rem;
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.notes-tabs {
+    display: flex;
+    background: #111;
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.note-tab {
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-weight: 800;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 6px;
+}
+
+.note-tab.active {
+    background: #a78bfa;
+    color: #000;
+}
+
+.folder-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+.back-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    font-weight: 800;
+    font-size: 0.75rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #fff;
+}
+
+.folder-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+}
+
+.breadcrumb-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-btn:hover {
+    color: #fff;
+}
+
+.breadcrumb-btn.active {
+    color: #a78bfa;
+}
+
+.folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
+}
+
+.folder-card {
+    background: #111;
+    border: 2px solid #333;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+}
+
+.folder-card:hover {
+    transform: translateY(-8px);
+    border-color: #a78bfa;
+    box-shadow: 0 10px 30px rgba(167, 139, 250, 0.1);
+}
+
+.folder-name {
+    font-weight: 800;
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.note-file-card {
+    background: #111;
+    border: 2px solid #333;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.verified-tag {
+    display: inline-block;
+    color: #4ade80;
+    font-size: 0.65rem;
+    font-weight: 900;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+}
+
+.empty-folder-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 0;
+    color: #444;
+}
+
+.empty-folder-state p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* PYQ v2 grid */
+.pyq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.pyq-card-v2 {
+    background: #111;
+    border: 1px solid #333;
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.pyq-card-v2:hover {
+    border-color: #555;
+    background: #161616;
+}
+
+.pyq-subject-pill {
+    background: rgba(167, 139, 250, 0.1);
+    color: #a78bfa;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.year-pill {
+    background: rgba(248, 113, 113, 0.1);
+    color: #f87171;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.pyq-question {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 1.5rem 0;
+    line-height: 1.4;
+}
+
+.view-solution-btn {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #444;
+    font-weight: 900;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-solution-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
 }
