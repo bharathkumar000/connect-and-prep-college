@@ -133,34 +133,12 @@ const DashboardLayout = () => {
                             {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
                         </button>
 
-                        {/* Notification Bell with Dropdown */}
+                        {/* Notification Bell with Page Navigation */}
                         <div className="notif-wrapper">
-                            <button className="notification-btn-header" onClick={() => setNotifOpen(!notifOpen)}>
+                            <button className="notification-btn-header" onClick={() => navigate('/dashboard/notifications')}>
                                 <Bell size={24} />
                                 {unreadCount > 0 && <span className="notif-badge">{unreadCount}</span>}
                             </button>
-                            {notifOpen && (
-                                <>
-                                    <div className="notif-dropdown">
-                                        <div className="notif-dropdown-header">
-                                            <h4>Notifications</h4>
-                                            <span>{unreadCount} unread</span>
-                                        </div>
-                                        {notifications.map(n => (
-                                            <div key={n.id} className={`notif-item ${n.read ? 'read' : 'unread'}`}>
-                                                <div className="notif-icon">{notifIcons[n.type] || <Bell size={16} />}</div>
-                                                <div className="notif-body">
-                                                    <strong>{n.title}</strong>
-                                                    <p>{n.message}</p>
-                                                    <span className="notif-time">{n.time}</span>
-                                                </div>
-                                                {!n.read && <div className="unread-dot" />}
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="backdrop" onClick={() => setNotifOpen(false)} />
-                                </>
-                            )}
                         </div>
 
                         <div className="profile-dropdown-container">
