@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { MessageCircle, Video, Upload, User, Check, Clock, Mic, Bell, Send, UserPlus } from 'lucide-react';
@@ -203,8 +204,5 @@ const DoubtSolving = () => {
         </div>
     );
 };
-
-export default DoubtSolving;
-
 
 export default DoubtSolving;
