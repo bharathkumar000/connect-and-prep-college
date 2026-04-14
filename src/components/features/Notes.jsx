@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { FileText, Download, Folder, ChevronRight, Home, ArrowLeft, Star, FileQuestion } from 'lucide-react';
