@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import { BookOpen, GraduationCap, School } from 'lucide-react';
 import './LoginPage.css';
@@ -11,7 +12,7 @@ const LoginPage = () => {
     const [loading, setLoading] = useState(false);
 
     const { login } = useAuth();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,7 +22,7 @@ const LoginPage = () => {
         const result = await login(email, password);
 
         if (result.success) {
-            navigate('/dashboard');
+            router.push('/dashboard');
         } else {
             setError(result.error);
         }
