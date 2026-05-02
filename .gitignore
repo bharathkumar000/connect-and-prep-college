@@ -6,6 +6,8 @@ server/node_modules/
 # Build output
 dist/
 build/
+.next/
+out/
 
 # Vite cache
 .vite/
