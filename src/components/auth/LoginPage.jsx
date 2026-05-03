@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../context/AuthContext';
-import { BookOpen, GraduationCap, School } from 'lucide-react';
+import { ShieldCheck, Cpu, Zap, Lock, Globe, ArrowRight } from 'lucide-react';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -10,6 +11,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [role, setRole] = useState('STUDENT'); // Role toggle: STUDENT / FACULTY
 
     const { login } = useAuth();
     const router = useRouter();
@@ -30,52 +32,111 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-card">
-                <div className="login-header">
-                    <div className="logo-icon">
-                        <GraduationCap size={64} strokeWidth={1.5} />
+        <div className="login-wrapper">
+            <div className="login-dual-panel">
+                {/* Left Sidebar - System Info */}
+                <div className="login-sidebar">
+                    <div className="sidebar-logo">
+                        <div className="logo-box">
+                            <ShieldCheck size={32} strokeWidth={2.5} color="#fbbf24" />
+                        </div>
+                        <span className="logo-text">CONNECT & PREP</span>
                     </div>
-                    <h1>CONNECT & PREP</h1>
+
+                    <div className="sidebar-content">
+                        <h2 className="system-title">SYSTEM SYNC</h2>
+                        <p className="system-sub">Synchronize your identification parameters to initiate node connection.</p>
+
+                        <ul className="feature-list">
+                            <li><Zap size={16} /> INSTANT ACCESS VALIDATION</li>
+                            <li><Lock size={16} /> MILITARY GRADE ENCRYPTION</li>
+                            <li><Cpu size={16} /> REAL-TIME ANALYTICS CORE</li>
+                            <li><Globe size={16} /> PERIMETER MONITORING</li>
+                        </ul>
+                    </div>
+
+                    <div className="sidebar-footer">
+                        <div className="version-info">
+                            <div className="v-line" />
+                            <span>PROTOCOL 4.2.0 - S</span>
+                        </div>
+                        <div className="footer-links">
+                            <span>PRIVACY</span>
+                            <span>SUPPORT</span>
+                        </div>
+                    </div>
                 </div>
 
-                <form onSubmit={handleLogin} className="login-form">
-                    <div className="form-group">
-                        <div>
-                            <label>EMAIL ID / USN</label>
-                            <span className="separator">&raquo;</span>
+                {/* Right Panel - Form Area */}
+                <div className="login-main">
+                    <div className="form-container">
+                        <div className="sync-header">
+                            <span className="platform-label">INSTITUTIONAL SYNC HUB</span>
+                            <h1>WELCOME</h1>
+                            <p>SYNCHRONIZE YOUR IDENTIFICATION PARAMETERS</p>
                         </div>
-                        <div className="input-wrapper">
-                            <input
-                                type="text"
-                                placeholder="USN / Email ID"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
+
+                        <div className="role-selector">
+                            <button 
+                                className={`role-pill ${role === 'STUDENT' ? 'active' : ''}`}
+                                onClick={() => setRole('STUDENT')}
+                            >
+                                I'M A STUDENT
+                            </button>
+                            <button 
+                                className={`role-pill ${role === 'FACULTY' ? 'active' : ''}`}
+                                onClick={() => setRole('FACULTY')}
+                            >
+                                I'M A FACULTY
+                            </button>
                         </div>
+
+                        <form onSubmit={handleLogin} className="sync-form">
+                            <div className="input-group">
+                                <label>NODE CREDENTIALS</label>
+                                <div className="input-field-wrap">
+                                    <Globe size={18} className="field-icon" />
+                                    <input
+                                        type="text"
+                                        placeholder="authorized@institution.edu"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="input-group">
+                                <label>SECURITY PROTOCOL KEY</label>
+                                <div className="input-field-wrap">
+                                    <Lock size={18} className="field-icon" />
+                                    <input
+                                        type="password"
+                                        placeholder="••••••••••••"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            {error && <div className="sync-error-msg">{error}</div>}
+
+                            <button type="submit" className="establish-link-btn" disabled={loading}>
+                                {loading ? 'SYNCHRONIZING...' : (
+                                    <>
+                                        ESTABLISH LINK <ArrowRight size={20} />
+                                    </>
+                                )}
+                            </button>
+
+                            <div className="form-alt-footer">
+                                <span>NEW NODE SIGNATURE?</span>
+                                <Link href="/register" className="register-link">Enroll Node</Link>
+                            </div>
+                        </form>
                     </div>
-
-                    <div className="form-group">
-                        <div>
-                            <label>PASSWORD</label>
-                            <span className="separator">&raquo;</span>
-                        </div>
-                        <div className="input-wrapper">
-                            <input
-                                type="password"
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                    </div>
-
-                    {error && <div className="error-message">{error}</div>}
-
-                    <button type="submit" className="login-btn" disabled={loading}>
-                        {loading ? 'LOGGING IN...' : 'LOGIN'}
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
     );

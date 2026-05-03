@@ -1,3 +1,4 @@
+/* Inherit base styles from LoginPage or duplicate for standalone consistency */
 .login-wrapper {
     min-height: 100vh;
     display: flex;
@@ -12,8 +13,8 @@
 }
 
 .login-dual-panel {
-    width: 1000px;
-    height: 640px;
+    width: 1100px; /* Slightly wider for signup fields */
+    height: 720px;
     display: flex;
     box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0,0,0,0.5);
     background: #fff;
@@ -22,12 +23,17 @@
     animation: scaleEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Reverse layout for Signup mode */
+.login-dual-panel.signup-mode {
+    flex-direction: row-reverse;
+}
+
 @keyframes scaleEnter {
     from { opacity: 0; transform: scale(0.95) translateY(20px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* SIDEBAR - LEFT */
+/* SIDEBAR - RIGHT (Swapped in Signup) */
 .login-sidebar {
     width: 38%;
     background: linear-gradient(135deg, #111 0%, #000 100%);
@@ -37,19 +43,13 @@
     justify-content: space-between;
     color: #fff;
     position: relative;
-    border-right: 4px solid #000;
+    border-left: 4px solid #000; /* Border swap */
 }
 
-.login-sidebar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.1;
-    pointer-events: none;
+/* Clear border on the other side for login */
+.login-dual-panel:not(.signup-mode) .login-sidebar {
+    border-right: 4px solid #000;
+    border-left: none;
 }
 
 .sidebar-logo {
@@ -94,7 +94,7 @@
 }
 
 .system-sub {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 2.5rem;
     line-height: 1.5;
@@ -124,11 +124,6 @@
     color: #fbbf24;
 }
 
-.feature-list li:hover {
-    transform: translateX(10px);
-    color: #fff;
-}
-
 .sidebar-footer {
     position: relative;
     z-index: 10;
@@ -155,44 +150,30 @@
     letter-spacing: 2px;
 }
 
-.footer-links {
-    display: flex;
-    gap: 2rem;
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.65);
-    letter-spacing: 1px;
-}
-
-.footer-links span:hover {
-    color: #fbbf24;
-    cursor: pointer;
-}
-
-/* MAIN CONTENT - RIGHT */
+/* MAIN CONTENT - FORM */
 .login-main {
     flex: 1;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem;
+    padding: 3rem;
 }
 
 .form-container {
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
 }
 
 .sync-header {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .platform-label {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: #888;
     text-transform: uppercase;
     display: block;
@@ -200,7 +181,7 @@
 }
 
 .sync-header h1 {
-    font-size: 3.8rem;
+    font-size: 3.2rem;
     font-weight: 950;
     color: #000;
     line-height: 0.9;
@@ -209,7 +190,7 @@
 }
 
 .sync-header p {
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     font-weight: 800;
     color: #888;
     text-transform: uppercase;
@@ -223,16 +204,16 @@
     background: #f4f4f4;
     padding: 6px;
     border: 3px solid #000;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     gap: 6px;
 }
 
 .role-pill {
-    padding: 12px;
+    padding: 10px;
     border: none;
     background: transparent;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     font-weight: 900;
     color: #888;
     cursor: pointer;
@@ -251,7 +232,7 @@
 .sync-form {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1.25rem;
 }
 
 .input-group label {
@@ -259,7 +240,7 @@
     font-size: 0.65rem;
     font-weight: 900;
     color: #000;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -281,11 +262,11 @@
 
 .input-field-wrap input {
     width: 100%;
-    padding: 18px 18px 18px 50px;
+    padding: 14px 14px 14px 45px;
     background: transparent;
     border: none;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: #000;
     outline: none;
@@ -293,7 +274,7 @@
 
 .input-field-wrap:focus-within {
     background: #fff;
-    box-shadow: 6px 6px 0px #fbbf24;
+    box-shadow: 4px 4px 0px #fbbf24;
     transform: translate(-3px, -3px);
 }
 
@@ -304,19 +285,18 @@
     text-transform: uppercase;
     text-align: center;
     background: rgba(239, 68, 68, 0.1);
-    padding: 10px;
+    padding: 8px;
     border: 2px solid #ef4444;
 }
 
-/* Establish Link Button */
 .establish-link-btn {
     width: 100%;
-    padding: 20px;
+    padding: 16px;
     background: #fbbf24;
     color: #000;
     border: 3px solid #000;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 900;
     text-transform: uppercase;
     display: flex;
@@ -324,59 +304,13 @@
     justify-content: center;
     gap: 15px;
     cursor: pointer;
-    box-shadow: 8px 8px 0px #000;
+    box-shadow: 6px 6px 0px #000;
     transition: all 0.2s;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .establish-link-btn:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0px #000;
+    box-shadow: 10px 10px 0px #000;
     background: #f59e0b;
-}
-
-.establish-link-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    background: #888;
-}
-
-.form-alt-footer {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.65rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: #888;
-}
-
-.register-link {
-    color: #000;
-    margin-left: 8px;
-    text-decoration: none;
-    border-bottom: 2px solid #000;
-    transition: all 0.2s;
-}
-
-.register-link:hover {
-    color: #fbbf24;
-    border-color: #fbbf24;
-}
-
-/* Responsive fixes */
-@media (max-width: 900px) {
-    .login-dual-panel {
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-    }
-    .login-sidebar {
-        width: 100%;
-        padding: 2rem;
-        border-right: none;
-        border-bottom: 4px solid #000;
-    }
-    .login-main {
-        padding: 3rem 1.5rem;
-    }
 }
