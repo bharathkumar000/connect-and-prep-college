@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { Zap, CheckCircle2 } from 'lucide-react';

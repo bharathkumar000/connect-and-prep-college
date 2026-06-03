@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import GroupStudy from './GroupStudy';
 import PeerTutoring from './PeerTutoring';

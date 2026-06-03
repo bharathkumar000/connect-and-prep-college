@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { extraAPI } from '../../services/api';
 import { Target, CheckCircle2, Circle, Clock, Zap, BrainCircuit } from 'lucide-react';

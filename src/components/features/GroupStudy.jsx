@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { Users, MapPin, Clock, Calendar, Plus } from 'lucide-react';

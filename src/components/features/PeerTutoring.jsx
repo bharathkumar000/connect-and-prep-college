@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { useAuth } from '../../context/AuthContext';
@@ -33,7 +34,7 @@ const PeerTutoring = () => {
                                 <h3 style={{ margin: '0 0 0.5rem 0', color: '#4ade80' }}>{session.topic}</h3>
                                 <p style={{ margin: 0, fontWeight: 'bold' }}>Tutor: {session.tutor}</p>
                             </div>
-                            {user.role === 'teacher' && (
+                            {user?.role === 'teacher' && (
                                 <button className="icon-btn" title="Take Attendance">
                                     <CheckSquare size={18} />
                                 </button>

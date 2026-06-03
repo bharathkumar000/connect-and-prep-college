@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Heart, X, Briefcase, GraduationCap, Star, Calendar, MessageSquare, Linkedin } from 'lucide-react';
 import './FeatureStyles.css';

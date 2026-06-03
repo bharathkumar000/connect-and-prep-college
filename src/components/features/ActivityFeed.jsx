@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { Upload, Trophy, FileText, HelpCircle, Megaphone, Sparkles } from 'lucide-react';

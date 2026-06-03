@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { Play, Clock, Eye, Filter } from 'lucide-react';

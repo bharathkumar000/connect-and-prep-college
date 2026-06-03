@@ -3058,6 +3058,53 @@ textarea:focus {
 .hw-badge.pending { color: #fbbf24; background: rgba(251, 191, 36, 0.15); }
 .hw-badge.completed { color: #10b981; background: rgba(16, 185, 129, 0.15); }
 
+/* --- ASSIGNMENT HUB STATS --- */
+.stats-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stats-mini-grid .stat-box {
+    background: #111;
+    border: 3px solid #fff;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 6px 6px 0px #fff;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1 !important; /* Ensure visibility */
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-mini-grid .stat-box:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0px #fff;
+    border-color: #fbbf24;
+}
+
+/* Color Modifiers */
+.stats-mini-grid .stat-box.cyan { border-color: #22d3ee; box-shadow: 6px 6px 0px #22d3ee; }
+.stats-mini-grid .stat-box.purple { border-color: #a78bfa; box-shadow: 6px 6px 0px #a78bfa; }
+.stats-mini-grid .stat-box.orange { border-color: #fb923c; box-shadow: 6px 6px 0px #fb923c; }
+
+.stats-mini-grid .stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #999;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.stats-mini-grid .stat-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+}
+
 /* --- PARENT DASHBOARD --- */
 .parent-dashboard-container {
     padding: 1rem 0;

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { extraAPI } from '../../services/api';
 import { Briefcase, Building2, GraduationCap, Lock, Unlock, ArrowUpRight, Search, Users } from 'lucide-react';

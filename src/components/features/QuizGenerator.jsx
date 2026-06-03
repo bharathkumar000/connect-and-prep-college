@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { mockBackend } from '../../services/mockBackend';
 import { BrainCircuit, CheckCircle2, XCircle, RotateCcw, Zap } from 'lucide-react';

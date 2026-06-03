@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Search, FileText, Download, Filter, Upload, Plus, Trash2 } from 'lucide-react';
 import CustomDropdown from '../layout/CustomDropdown';

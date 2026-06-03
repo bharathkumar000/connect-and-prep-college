@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { Pencil, Eraser, Trash2, Download, MousePointer2, Square, Circle as CircleIcon, Upload, Share2 } from 'lucide-react';
 import './FeatureStyles.css';
@@ -120,7 +121,8 @@ const Whiteboard = () => {
     const generateCode = () => {
         const code = 'WB-' + Math.random().toString(36).substr(2, 6).toUpperCase();
         setRoomCode(code);
-        alert(`Your Private Session Code: ${code}\nShare this with your friend to collaborate.`);
+        alert(`Your Private Session Code: ${code}
+Share this with your friend to collaborate.`);
     };
 
     return (

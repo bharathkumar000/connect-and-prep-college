@@ -61,11 +61,37 @@ const DoubtSolving = () => {
 
     return (
         <div className="feature-container">
-            <div className="yellow-title-box" style={{ marginBottom: '2rem' }}>
+            <div className="yellow-title-box" style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                 <h1>DOUBT SOLVING HUB</h1>
+                <button 
+                    onClick={() => setShowHistory(!showHistory)}
+                    style={{ 
+                        background: '#000', 
+                        color: showHistory ? '#fbbf24' : '#fff', 
+                        border: '2px solid #000', 
+                        padding: '10px 20px', 
+                        fontWeight: '900', 
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        textTransform: 'uppercase',
+                        fontSize: '0.8rem',
+                        transition: 'all 0.2s'
+                    }}
+                >
+                    <Clock size={18} />
+                    {showHistory ? 'Hide History' : 'View History'}
+                </button>
             </div>
 
-            <div className="doubt-layout" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '2.5rem', alignItems: 'start' }}>
+            <div className="doubt-layout" style={{ 
+                display: 'grid', 
+                gridTemplateColumns: showHistory ? '1.2fr 0.8fr' : '1fr', 
+                gap: '2.5rem', 
+                alignItems: 'start',
+                transition: 'all 0.3s'
+            }}>
                 
                 {/* Left Column: Tag & Ask */}
                 <div className="brutalist-card-main" style={{ background: '#111', border: '3px solid #fff', padding: '2.5rem', boxShadow: '15px 15px 0px rgba(255,255,255,0.1)' }}>
@@ -154,30 +180,32 @@ const DoubtSolving = () => {
                     )}
                 </div>
 
-                {/* Right Column: History Sidebar */}
-                <div className="history-sidebar">
-                    <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                        <h3 style={{ margin: 0, letterSpacing: '1px' }}>DOUBT HISTORY</h3>
-                        <Bell size={18} color="#666" />
-                    </div>
+                {/* Right Column: History Sidebar (Conditional) */}
+                {showHistory && (
+                    <div className="history-sidebar animate-fadeIn" style={{ animation: 'fadeIn 0.3s ease' }}>
+                        <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                            <h3 style={{ margin: 0, letterSpacing: '1px' }}>DOUBT HISTORY</h3>
+                            <Bell size={18} color="#666" />
+                        </div>
 
-                    <div className="doubt-stack" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        {doubts.map((d) => (
-                            <div key={d.id} className="history-card" style={{ background: '#111', border: '1px solid #333', padding: '1.2rem', borderRadius: '4px', position: 'relative', overflow: 'hidden' }}>
-                                <div className={`status-stripe ${d.status.toLowerCase()}`} style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: d.status === 'Resolved' ? '#4ade80' : '#fbbf24' }} />
-                                <div style={{ marginLeft: '10px' }}>
-                                    <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1rem', fontWeight: '800' }}>{d.question}</h4>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: '900' }}>{d.subject.toUpperCase()} • {d.time}</span>
-                                        <span style={{ fontSize: '0.7rem', fontWeight: '900', color: d.status === 'Resolved' ? '#4ade80' : '#fbbf24' }}>
-                                            {d.status.toUpperCase()}
-                                        </span>
+                        <div className="doubt-stack" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            {doubts.map((d) => (
+                                <div key={d.id} className="history-card" style={{ background: '#111', border: '1px solid #333', padding: '1.2rem', borderRadius: '4px', position: 'relative', overflow: 'hidden' }}>
+                                    <div className={`status-stripe ${d.status.toLowerCase()}`} style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: d.status === 'Resolved' ? '#4ade80' : '#fbbf24' }} />
+                                    <div style={{ marginLeft: '10px' }}>
+                                        <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1rem', fontWeight: '800' }}>{d.question}</h4>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ fontSize: '0.7rem', color: '#666', fontWeight: '900' }}>{d.subject.toUpperCase()} • {d.time}</span>
+                                            <span style={{ fontSize: '0.7rem', fontWeight: '900', color: d.status === 'Resolved' ? '#4ade80' : '#fbbf24' }}>
+                                                {d.status.toUpperCase()}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             <style>{`
